@@ -1,12 +1,13 @@
 <!doctype html>
 <html>
     <head>
-        <title>Hola {{nombre}}</title>
+        <title>Hola {{current_user.username}}</title>
         <meta charset="utf-8">
     </head>
     <body>
         {% block main %}
-            Hola, {{nombre}}.
+            Hola, {{current_user.username}}.
+            <p>Has visitado {{ session.get('visitas_index', 0) }} veces</p>
         {% endblock %}
     </body>
 </html>

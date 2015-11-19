@@ -16,13 +16,25 @@ class Cliente(BaseModel):
     fechaInscripcion = peewee.DateTimeField(default=datetime.now())
     baneado = peewee.BooleanField(default=False)
 
+    def is_anonymous(self):
+        return False
+
+    def is_active(self):
+        return self.baneado
+
+    def is_authenticated(self):
+        return self.username != ''
+
+    def get_id(self):
+        return unicode(self.id)
+
 class Pedido(BaseModel):
     fechaPedido = peewee.DateTimeField(default=datetime.now())
     cliente = peewee.ForeignKeyField(Cliente, related_name='pedidos')
 
-class Item(BaseModel):
-    nombreProducto = peewee.StringField()
-    description = peewee.StringField()
+class Inventario(BaseModel):
+    nombreProducto = peewee.CharField()
+    description = peewee.CharField()
     precio = peewee.FloatField()
 
 class ItemPedido(BaseModel):
