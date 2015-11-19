@@ -1,0 +1,13 @@
+{% extends "hola.html" %}
+{# Este es un comentario #}
+{% block saludo %}
+    {{ super() }}<br>
+    {{saludo_personalizado}}, {{nombre}}<br>
+    {% if saludo_personalizado == 'wena' %}
+        ke zucede?
+    {% elif saludo_personalizado == 'que' and nombre == 'picardia' %}
+        denunciado rufian, despedite de tu cuenta machineola.
+    {% else %}
+        bueno...
+    {% endif %}
+{% endblock %}
