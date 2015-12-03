@@ -43,7 +43,7 @@ def user_create():
 
 @app.route('/user/login', methods=['GET', 'POST'])
 def user_login():
-    if not current_user.is_anonymous():
+    if not current_user.is_anonymous:
         redirect(url_for('index'))
 
     form = CreateUserForm(request.form)
@@ -62,6 +62,10 @@ def user_login():
 def user_logout():
     logout_user()
     return redirect(url_for('user_login'))
+
+@app.route('/saludo/<nombre>')
+def saludo(nombre):
+    return u'Hola {}'.format(nombre)
 
 @app.route('/')
 @login_required

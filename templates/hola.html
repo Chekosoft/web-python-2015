@@ -6,8 +6,10 @@
     </head>
     <body>
         {% block main %}
-            Hola, {{current_user.username}}.
+            Hola, {{ current_user.username }}.
             <p>Has visitado {{ session.get('visitas_index', 0) }} veces</p>
         {% endblock %}
+        <img src="{{ url_for('static', filename='que_picardia.jpg') }}" alt="Que Picardía">
+        <a href="{{ url_for('saludo', nombre=u'Troesma') }}">Saluda al troesma</a>
     </body>
 </html>
