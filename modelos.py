@@ -16,12 +16,15 @@ class Cliente(BaseModel):
     fechaInscripcion = peewee.DateTimeField(default=datetime.now())
     baneado = peewee.BooleanField(default=False)
 
+    @property
     def is_anonymous(self):
         return False
 
+    @property
     def is_active(self):
         return self.baneado
 
+    @property
     def is_authenticated(self):
         return self.username != ''
 

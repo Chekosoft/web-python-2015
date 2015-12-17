@@ -24,7 +24,7 @@ login_manager.init_app(app)
 
 @app.route('/user/create', methods=['GET', 'POST'])
 def user_create():
-    if not current_user.is_anonymous():
+    if not current_user.is_anonymous:
         redirect(url_for('index'))
 
     form = CreateUserForm(request.form)
