@@ -14,7 +14,7 @@ login_manager = LoginManager()
 @login_manager.user_loader
 def get_user(user_id):
     try:
-        return Cliente.get(id = user_id)
+        return Cliente.get(Cliente.id == int(user_id))
     except:
         return None
 
@@ -43,14 +43,19 @@ def user_create():
 
 @app.route('/user/login', methods=['GET', 'POST'])
 def user_login():
+    print current_user.is_anonymous
+
     if not current_user.is_anonymous:
         redirect(url_for('index'))
-
+	
     form = CreateUserForm(request.form)
     if form.validate_on_submit():
         try:
             user = Cliente.get(username = form.username.data,
                 password = form.password.data)
+            print dir(user)
+            print type(user)
+            print user.is_anonymous
             login_user(user)
             return redirect(url_for('index'))
         except:

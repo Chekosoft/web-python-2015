@@ -22,7 +22,7 @@ class Cliente(BaseModel):
 
     @property
     def is_active(self):
-        return self.baneado
+        return not self.baneado
 
     @property
     def is_authenticated(self):
